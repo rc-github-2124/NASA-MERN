@@ -1,24 +1,17 @@
-const request = require('supertest');
-const app = require('../../app');
-const { 
-  mongoConnect,
-  mongoDisconnect,
-} = require('../../services/mongo');
+const request = require('supertest')
+const app = require('../../express')
 const {
-  loadPlanetsData,
-} = require('../../models/planets.model');
+    loadPlanetsData,
+  } = require('../../models/planets.models');
 
-describe('Launches API', () => {
-  beforeAll(async () => {
-    await mongoConnect();
-    await loadPlanetsData();
-  });
 
-  afterAll(async () => {
-    await mongoDisconnect();
-  });
-
-  describe('Test GET /launches', () => {
+  describe('Launches API', () => {
+    beforeAll(async () => {
+      await mongoConnect();
+      await loadPlanetsData();
+    });
+})
+describe('Test GET /launches', () => {
     test('It should respond with 200 success', async () => {
       const response = await request(app)
         .get('/v1/launches')
@@ -86,4 +79,4 @@ describe('Launches API', () => {
       });
     });
   });
-});
+
